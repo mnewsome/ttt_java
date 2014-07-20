@@ -3,19 +3,15 @@ package com.ttt;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Arrays;
-
 import static org.junit.Assert.*;
 
 public class TestBoard {
 
-    public static final String X_MARK = "x";
-    public static final String O_MARK = "o";
     private Board board;
 
     @Before
     public void initBoard() {
-        board = new Board(9);
+        board = new Board(3);
     }
 
     @Test
@@ -24,17 +20,20 @@ public class TestBoard {
     }
 
     @Test
-    public void testSpaces() {
+    public void boardCanBeCreatedWithDifferentSizes() {
         String[] testSpaces = new String[9];
-        Arrays.fill(testSpaces, "");
-        assertArrayEquals(testSpaces, board.spaces());
+        assertTrue(testSpaces.length == board.spaces().length);
+
+        String[] testSpaces2 = new String[16];
+        Board board2 = new Board(4);
+        assertTrue(testSpaces2.length == board2.spaces().length);
     }
 
     @Test
-    public void testCanFillSpaces() {
-        board.fillSpaceAt(1, X_MARK);
+    public void testSpacesCanBeFilled() {
+        board.fillSpaceAt(1, "something");
 
-        assertTrue(board.spaces()[0] == "x");
+        assertTrue(board.spaces()[0] == "something");
     }
 
     @Test
@@ -44,10 +43,9 @@ public class TestBoard {
 
     @Test
     public void testSpaceCanBeReset() {
-        board.fillSpaceAt(1, X_MARK);
-
+        board.fillSpaceAt(1, "BOOYA");
         board.resetSpaceAt(1);
 
-        assertTrue(board.spaces()[0] == "" );
+        assertTrue(board.spaces()[0] == "");
     }
 }

@@ -7,7 +7,8 @@ public class Board {
     private String[] spaces;
     private static final String  EMPTY_SPACE = "";
 
-    public Board(int numberOfSpaces) {
+    public Board(int size) {
+        int numberOfSpaces = size*size;
         this.spaces = new String[numberOfSpaces];
         Arrays.fill(this.spaces, EMPTY_SPACE);
     }

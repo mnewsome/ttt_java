@@ -7,6 +7,8 @@ import static org.junit.Assert.*;
 
 public class TTTBoardTest {
     private TTTBoard tttBoard;
+    private String X_MARK = "x";
+    private String O_MARK = "o";
 
     @Before
     public void initTTTBoard() {
@@ -15,10 +17,10 @@ public class TTTBoardTest {
 
     @Test
     public void testCurrentPlayer() {
-        tttBoard.fillSpaceAt(1, "x");
-        assertTrue(tttBoard.currentPlayer() == "o");
+        tttBoard.fillSpaceAt(1, X_MARK);
+        assertTrue(tttBoard.currentPlayer() == O_MARK);
 
-        tttBoard.fillSpaceAt(2, "o");
-        assertTrue(tttBoard.currentPlayer() == "x");
+        tttBoard.fillSpaceAt(2, O_MARK);
+        assertTrue(tttBoard.currentPlayer() == X_MARK);
     }
 }
