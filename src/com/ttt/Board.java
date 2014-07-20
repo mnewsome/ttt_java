@@ -5,38 +5,26 @@ import java.util.Arrays;
 public class Board {
 
     private String[] spaces;
-    public static final String PLAYER_ONE = "x";
-    public static final String PLAYER_TWO = "o";
-    
+    private static final String  EMPTY_SPACE = "";
 
-    public Board() {
-        this.spaces = new String[9];
-        Arrays.fill(this.spaces, "");
+    public Board(int numberOfSpaces) {
+        this.spaces = new String[numberOfSpaces];
+        Arrays.fill(this.spaces, EMPTY_SPACE);
     }
 
     public String[] spaces() {
         return spaces;
     }
 
-    public void fillSpaceAt(int move) {
-        spaces[move - 1] = currentPlayer();
+    public void fillSpaceAt(int move, String playerMark) {
+        spaces[move - 1] = playerMark;
     }
 
-    public String currentPlayer() {
-        int blankSpaceCount = blankSpaceCount();
-
-        if (blankSpaceCount % 2 == 0) {
-            return PLAYER_TWO;
-        } else {
-            return PLAYER_ONE;
-        }
-    }
-
-    private int blankSpaceCount() {
+    protected int blankSpaceCount() {
         int openSpaces = 0;
 
         for(int i = 0; i < this.spaces.length; i++) {
-            if (this.spaces[i].equals("")){
+            if (this.spaces[i].equals(EMPTY_SPACE)){
                 openSpaces += 1;
             }
         }
@@ -44,10 +32,14 @@ public class Board {
     }
 
     public boolean isSpaceEmpty(int move){
-        if (this.spaces[move -1].equals("")){
+        if (this.spaces[move -1].equals(EMPTY_SPACE)){
             return true;
         } else {
             return false;
         }
+    }
+
+    public void resetSpaceAt(int spaceNumber) {
+        spaces[spaceNumber - 1] = EMPTY_SPACE;
     }
 }
